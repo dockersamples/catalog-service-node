@@ -49,27 +49,33 @@ function App() {
       </p>
 
       {catalog ? (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>UPC</th>
-              <th>Inventory</th>
-              <th>Image</th>
-            </tr>
-          </thead>
-          <tbody>
-            {catalog.map((product) => (
-              <ProductRow
-                key={product.id}
-                product={product}
-                onChange={() => fetchCatalog()}
-              />
-            ))}
-          </tbody>
-        </table>
+        <>
+          {catalog.length === 0 ? (
+            <em>There are no products... yet!</em>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>UPC</th>
+                  <th>Inventory</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                {catalog.map((product) => (
+                  <ProductRow
+                    key={product.id}
+                    product={product}
+                    onChange={() => fetchCatalog()}
+                  />
+                ))}
+              </tbody>
+            </table>
+          )}
+        </>
       ) : (
         <p>Loading catalog...</p>
       )}
