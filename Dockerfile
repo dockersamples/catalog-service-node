@@ -13,6 +13,8 @@ RUN npm uninstall npm -g
 # Setup a non-root user to run the app
 WORKDIR /usr/local/app
 RUN useradd -m appuser && chown -R appuser /usr/local/app
+COPY package.json yarn.lock ./
+RUN corepack enable
 USER appuser
 
 
@@ -26,7 +28,6 @@ USER appuser
 ###########################################################
 FROM base AS dev
 ENV NODE_ENV=development
-COPY package.json yarn.lock ./
 RUN yarn install
 CMD ["yarn", "dev-container"]
 
@@ -39,8 +40,7 @@ CMD ["yarn", "dev-container"]
 ###########################################################
 FROM base AS final
 ENV NODE_ENV=production
-COPY package.json yarn.lock ./
-RUN yarn install && yarn cache clean --force
+RUN yarn install && yarn cache clean
 COPY ./src ./src
 
 EXPOSE 3000

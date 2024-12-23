@@ -34,7 +34,7 @@ This project is currently configured to run all dependent services in containers
 
 To start the app, follow these steps:
 
-1. Ensure you have [Node](https://nodejs.org) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed on your machine.
+1. Ensure you have [Node 22+](https://nodejs.org) installed on your machine.
 
 2. Start all of the application dependencies
 
@@ -45,6 +45,7 @@ To start the app, follow these steps:
 3. Install the app dependencies and start the main app with the following command:
 
    ```console
+   corepack enable
    yarn install
    yarn dev
    ```
