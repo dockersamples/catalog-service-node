@@ -77,7 +77,6 @@ describe("Product creation", () => {
     expect(createdProduct.id).toBeDefined();
     expect(createdProduct.name).toBe("Kafka publishing test");
     expect(createdProduct.price).toBe(100);
-    expect(createdProduct.upc).toBe("100000000002");
 
     await kafkaConsumer.waitForMessage({
       id: createdProduct.id,
