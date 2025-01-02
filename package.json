@@ -7,10 +7,10 @@
     "dev-container": "nodemon src/index.js",
     "prettier": "prettier --write \"**/*.js\"",
     "prettier-check": "prettier --check \"**/*.js\"",
-    "test": "DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest --detectOpenHandles",
+    "test": "jest --detectOpenHandles",
     "unit-test": "jest --detectOpenHandles --testPathIgnorePatterns \"test/integration/.*\\.spec\\.js\"",
-    "integration-test": "DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest \"test/integration/.*\\.spec\\.js\" --detectOpenHandles",
-    "test-watch": "NODE_OPTIONS=--dns-result-order=ipv4first jest --watch \"test/**/*.spec.js\" --detectOpenHandles",
+    "integration-test": "jest \"test/integration/.*\\.spec\\.js\" --detectOpenHandles",
+    "test-watch": "jest --watch \"test/**/*.spec.js\" --detectOpenHandles",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -44,5 +44,5 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+  "packageManager": "yarn@4.5.3"
 }
