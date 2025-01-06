@@ -50,6 +50,7 @@ async function createProduct(product) {
     id: newProductId,
     name: product.name,
     price: product.price,
+    upc: product.upc,
   });
 
   return {
