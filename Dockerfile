@@ -5,7 +5,7 @@
 # By using this stage, it provides a consistent base for both
 # the dev and prod versions of the image.
 ###########################################################
-FROM node:22-slim AS base
+FROM node:18-slim AS base
 
 # Remove npm to resolve a currently known and fixable vulnerability 
 RUN npm uninstall npm -g
@@ -25,7 +25,7 @@ USER appuser
 # and automatically restart the app.
 ###########################################################
 FROM base AS dev
-ENV NODE_ENV=development
+ENV NODE_ENV development
 COPY package.json yarn.lock ./
 RUN yarn install
 CMD ["yarn", "dev-container"]
@@ -38,11 +38,11 @@ CMD ["yarn", "dev-container"]
 # installs only the production dependencies.
 ###########################################################
 FROM base AS final
-ENV NODE_ENV=production
+ENV NODE_ENV production
 COPY package.json yarn.lock ./
 RUN yarn install && yarn cache clean --force
 COPY ./src ./src
 
 EXPOSE 3000
 
-CMD [ "node", "src/index.js" ]
+CMD node src/index.js
