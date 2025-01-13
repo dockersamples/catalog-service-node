@@ -7,10 +7,10 @@
     "dev-container": "nodemon src/index.js",
     "prettier": "prettier --write \"**/*.js\"",
     "prettier-check": "prettier --check \"**/*.js\"",
-    "test": "DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest --detectOpenHandles",
+    "test": "cross-env DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest --detectOpenHandles",
     "unit-test": "jest --detectOpenHandles --testPathIgnorePatterns \"test/integration/.*\\.spec\\.js\"",
-    "integration-test": "DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest \"test/integration/.*\\.spec\\.js\" --detectOpenHandles",
-    "test-watch": "NODE_OPTIONS=--dns-result-order=ipv4first jest --watch \"test/**/*.spec.js\" --detectOpenHandles",
+    "integration-test": "cross-env DEBUG=testcontainers* NODE_OPTIONS=--dns-result-order=ipv4first jest \"test/integration/.*\\.spec\\.js\" --detectOpenHandles",
+    "test-watch": "cross-env NODE_OPTIONS=--dns-result-order=ipv4first jest --watch \"test/**/*.spec.js\" --detectOpenHandles",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@testcontainers/kafka": "^10.15.0",
     "@testcontainers/localstack": "^10.15.0",
     "@testcontainers/postgresql": "^10.15.0",
+    "cross-env": "^7.0.3",
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.10",
