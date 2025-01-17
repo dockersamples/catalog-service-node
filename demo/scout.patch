@@ -24,23 +24,23 @@ index 0577738..dc1e81c 100644
  
  EXPOSE 3000
  
--CMD [ "node", "src/index.js" ]
+-CMD [ "node", "--require", "./src/instrumentation.js", "src/index.js" ]
 \ No newline at end of file
-+CMD [ "node", "src/index.js" ]
++CMD node --require ./src/instrumentation.js src/index.js
 diff --git a/package-lock.json b/package-lock.json
-index d3706f8..0a0c834 100644
+index cad9759..7ca2525 100644
 --- a/package-lock.json
 +++ b/package-lock.json
-@@ -10,7 +10,7 @@
-       "dependencies": {
-         "@aws-sdk/client-s3": "^3.651.1",
+@@ -19,7 +19,7 @@
+         "@opentelemetry/sdk-trace-node": "^1.30.1",
+         "@opentelemetry/semantic-conventions": "^1.28.0",
          "dotenv": "^16.4.5",
 -        "express": "^4.21.1",
 +        "express": "4.17.1",
          "kafkajs": "^2.2.4",
          "multer": "^1.4.5-lts.1",
          "node-fetch": "v2",
-@@ -3509,27 +3509,24 @@
+@@ -5106,27 +5106,24 @@
        }
      },
      "node_modules/body-parser": {
@@ -80,7 +80,7 @@ index d3706f8..0a0c834 100644
        }
      },
      "node_modules/bowser": {
-@@ -3678,43 +3675,14 @@
+@@ -5275,43 +5272,14 @@
        }
      },
      "node_modules/bytes": {
@@ -127,7 +127,7 @@ index d3706f8..0a0c834 100644
      "node_modules/callsites": {
        "version": "3.1.0",
        "resolved": "https://registry.npmjs.org/callsites/-/callsites-3.1.0.tgz",
-@@ -4058,17 +4026,23 @@
+@@ -5647,17 +5615,23 @@
        }
      },
      "node_modules/content-disposition": {
@@ -155,7 +155,7 @@ index d3706f8..0a0c834 100644
      "node_modules/content-type": {
        "version": "1.0.5",
        "resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz",
-@@ -4086,9 +4060,9 @@
+@@ -5675,9 +5649,9 @@
        "license": "MIT"
      },
      "node_modules/cookie": {
@@ -168,7 +168,7 @@ index d3706f8..0a0c834 100644
        "license": "MIT",
        "engines": {
          "node": ">= 0.6"
-@@ -4247,23 +4221,19 @@
+@@ -5836,23 +5810,19 @@
        }
      },
      "node_modules/depd": {
@@ -200,7 +200,7 @@ index d3706f8..0a0c834 100644
      },
      "node_modules/detect-newline": {
        "version": "3.1.0",
-@@ -4426,20 +4396,6 @@
+@@ -6015,20 +5985,6 @@
          "url": "https://dotenvx.com"
        }
      },
@@ -221,7 +221,7 @@ index d3706f8..0a0c834 100644
      "node_modules/eastasianwidth": {
        "version": "0.2.0",
        "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
-@@ -4481,9 +4437,9 @@
+@@ -6070,9 +6026,9 @@
        "license": "MIT"
      },
      "node_modules/encodeurl": {
@@ -234,7 +234,7 @@ index d3706f8..0a0c834 100644
        "license": "MIT",
        "engines": {
          "node": ">= 0.8"
-@@ -4549,36 +4505,6 @@
+@@ -6138,36 +6094,6 @@
          "is-arrayish": "^0.2.1"
        }
      },
@@ -271,7 +271,7 @@ index d3706f8..0a0c834 100644
      "node_modules/escalade": {
        "version": "3.2.0",
        "resolved": "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz",
-@@ -4706,51 +4632,52 @@
+@@ -6294,51 +6220,52 @@
        }
      },
      "node_modules/express": {
@@ -346,10 +346,10 @@ index d3706f8..0a0c834 100644
 +      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==",
 +      "license": "MIT"
 +    },
-     "node_modules/fast-fifo": {
-       "version": "1.3.2",
-       "resolved": "https://registry.npmjs.org/fast-fifo/-/fast-fifo-1.3.2.tgz",
-@@ -4811,17 +4738,17 @@
+     "node_modules/extend": {
+       "version": "3.0.2",
+       "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",
+@@ -6405,17 +6332,17 @@
        }
      },
      "node_modules/finalhandler": {
@@ -373,15 +373,7 @@ index d3706f8..0a0c834 100644
          "unpipe": "~1.0.0"
        },
        "engines": {
-@@ -4923,6 +4850,7 @@
-       "version": "1.1.2",
-       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
-       "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
-+      "dev": true,
-       "license": "MIT",
-       "funding": {
-         "url": "https://github.com/sponsors/ljharb"
-@@ -4961,30 +4889,6 @@
+@@ -6589,30 +6516,6 @@
          "url": "https://github.com/sponsors/sindresorhus"
        }
      },
@@ -412,7 +404,7 @@ index d3706f8..0a0c834 100644
      "node_modules/get-package-type": {
        "version": "0.1.0",
        "resolved": "https://registry.npmjs.org/get-package-type/-/get-package-type-0.1.0.tgz",
-@@ -5008,19 +4912,6 @@
+@@ -6636,19 +6539,6 @@
          "url": "https://github.com/sponsors/sindresorhus"
        }
      },
@@ -432,7 +424,7 @@ index d3706f8..0a0c834 100644
      "node_modules/get-stream": {
        "version": "6.0.1",
        "resolved": "https://registry.npmjs.org/get-stream/-/get-stream-6.0.1.tgz",
-@@ -5079,18 +4970,6 @@
+@@ -6707,18 +6597,6 @@
          "node": ">=4"
        }
      },
@@ -451,7 +443,7 @@ index d3706f8..0a0c834 100644
      "node_modules/graceful-fs": {
        "version": "4.2.11",
        "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
-@@ -5108,22 +4987,11 @@
+@@ -6736,18 +6614,6 @@
          "node": ">=8"
        }
      },
@@ -470,12 +462,7 @@ index d3706f8..0a0c834 100644
      "node_modules/hasown": {
        "version": "2.0.2",
        "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz",
-       "integrity": "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==",
-+      "dev": true,
-       "license": "MIT",
-       "dependencies": {
-         "function-bind": "^1.1.2"
-@@ -5140,21 +5008,27 @@
+@@ -6768,21 +6634,27 @@
        "license": "MIT"
      },
      "node_modules/http-errors": {
@@ -509,10 +496,10 @@ index d3706f8..0a0c834 100644
 +      "integrity": "sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==",
 +      "license": "ISC"
 +    },
-     "node_modules/human-signals": {
-       "version": "2.1.0",
-       "resolved": "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz",
-@@ -6641,15 +6515,6 @@
+     "node_modules/https-proxy-agent": {
+       "version": "7.0.6",
+       "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz",
+@@ -8336,15 +8208,6 @@
          "tmpl": "1.0.5"
        }
      },
@@ -528,7 +515,7 @@ index d3706f8..0a0c834 100644
      "node_modules/media-typer": {
        "version": "0.3.0",
        "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",
-@@ -6660,13 +6525,10 @@
+@@ -8355,13 +8218,10 @@
        }
      },
      "node_modules/merge-descriptors": {
@@ -546,7 +533,7 @@ index d3706f8..0a0c834 100644
      },
      "node_modules/merge-stream": {
        "version": "2.0.0",
-@@ -7015,22 +6877,10 @@
+@@ -8716,22 +8576,10 @@
          "node": ">=0.10.0"
        }
      },
@@ -572,7 +559,7 @@ index d3706f8..0a0c834 100644
        "license": "MIT",
        "dependencies": {
          "ee-first": "1.1.1"
-@@ -7217,9 +7067,9 @@
+@@ -8917,9 +8765,9 @@
        "license": "ISC"
      },
      "node_modules/path-to-regexp": {
@@ -585,7 +572,7 @@ index d3706f8..0a0c834 100644
        "license": "MIT"
      },
      "node_modules/pg": {
-@@ -7571,18 +7421,12 @@
+@@ -9295,18 +9143,12 @@
        "license": "MIT"
      },
      "node_modules/qs": {
@@ -607,7 +594,7 @@ index d3706f8..0a0c834 100644
        }
      },
      "node_modules/queue-tick": {
-@@ -7602,13 +7446,13 @@
+@@ -9326,13 +9168,13 @@
        }
      },
      "node_modules/raw-body": {
@@ -626,7 +613,7 @@ index d3706f8..0a0c834 100644
          "iconv-lite": "0.4.24",
          "unpipe": "1.0.0"
        },
-@@ -7821,6 +7665,7 @@
+@@ -9580,6 +9422,7 @@
        "version": "5.2.1",
        "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
        "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
@@ -634,7 +621,7 @@ index d3706f8..0a0c834 100644
        "funding": [
          {
            "type": "github",
-@@ -7854,63 +7699,54 @@
+@@ -9613,63 +9456,54 @@
        }
      },
      "node_modules/send": {
@@ -718,9 +705,9 @@ index d3706f8..0a0c834 100644
        "license": "ISC"
      },
      "node_modules/shebang-command": {
-@@ -7936,78 +7772,6 @@
-         "node": ">=8"
-       }
+@@ -9701,78 +9535,6 @@
+       "integrity": "sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==",
+       "license": "BSD-2-Clause"
      },
 -    "node_modules/side-channel": {
 -      "version": "1.1.0",
@@ -797,7 +784,7 @@ index d3706f8..0a0c834 100644
      "node_modules/signal-exit": {
        "version": "3.0.7",
        "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz",
-@@ -8186,12 +7950,12 @@
+@@ -9951,12 +9713,12 @@
        }
      },
      "node_modules/statuses": {
@@ -814,7 +801,7 @@ index d3706f8..0a0c834 100644
        }
      },
      "node_modules/streamsearch": {
-@@ -8560,9 +8324,9 @@
+@@ -10323,9 +10085,9 @@
        }
      },
      "node_modules/toidentifier": {
@@ -828,12 +815,12 @@ index d3706f8..0a0c834 100644
        "engines": {
          "node": ">=0.6"
 diff --git a/package.json b/package.json
-index 8438638..14bdcf1 100644
+index 8046941..bd34a6d 100644
 --- a/package.json
 +++ b/package.json
-@@ -16,7 +16,7 @@
-   "dependencies": {
-     "@aws-sdk/client-s3": "^3.651.1",
+@@ -25,7 +25,7 @@
+     "@opentelemetry/sdk-node": "^0.57.1",
+     "@opentelemetry/sdk-trace-node": "^1.30.1",
      "dotenv": "^16.4.5",
 -    "express": "^4.21.1",
 +    "express": "4.17.1",
