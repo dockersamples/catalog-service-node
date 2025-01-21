@@ -5,7 +5,7 @@
 # By using this stage, it provides a consistent base for both
 # the dev and prod versions of the image.
 ###########################################################
-FROM node:18 AS base
+FROM node:23-slim AS base
 
 # Setup a non-root user to run the app
 WORKDIR /usr/local/app
