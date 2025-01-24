@@ -18,7 +18,7 @@ jobs:
       - name: Extract patches
         id: extract
         run: |
-          patchFiles=`ls demo/*.patch | jq -R '.' | jq -sc .`
+          patchFiles=`find ./demo -name "*.patch" | jq -R '.' | jq -sc .`
           echo "patchFiles=${patchFiles}" >> "$GITHUB_OUTPUT"
 
   validate:
