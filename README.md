@@ -1,4 +1,4 @@
-# Catalog Service - Node
+# Catalog Service -- Node
 
 This repo is a demo project that demonstrates all of Docker's services in a single project. Specifically, it includes the following:
 
