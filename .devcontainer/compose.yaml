@@ -1,0 +1,33 @@
+services:
+  app-workspace:
+    image: mcr.microsoft.com/devcontainers/javascript-node:20
+    network_mode: host
+    volumes:
+      - ./:/workspaces/catalog-service-node:cached
+      - socket-proxy:/tmp/proxy
+    command: sleep infinity
+    environment:
+      DOCKER_HOST: unix:///tmp/proxy/docker.sock
+ 
+  # This project is configured to use Testcontainers and some of the tests need to
+  # mount volumes. When tests run, they will use path names that exist in the container.
+  # The path /workspaces/catalog-service-node inside the container is different than 
+  # the path on the host, causing the mounts to be invalid. This mutator will
+  # rewrite the paths to ensure they work correctly.
+  #
+  # This proxy exposes a new socket, which is then shared with the app-workspace container.
+  socket-proxy:
+    image: mikesir87/docker-socket-proxy
+    volumes:
+      - socket-proxy:/tmp/proxy
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CONFIG_DATA: |
+        mutators:
+          - type: volumePath
+            from: /workspaces/catalog-service-node
+            to: $PWD
+      LISTEN_SOCKET_PATH: /tmp/proxy/docker.sock
+
+volumes:
+  socket-proxy:
