@@ -24,7 +24,7 @@ services:
     environment:
       CONFIG_DATA: |
         mutators:
-          - type: volumePath
+          - type: mountPath
             from: /workspaces/catalog-service-node
             to: $PWD
       LISTEN_SOCKET_PATH: /tmp/proxy/docker.sock
