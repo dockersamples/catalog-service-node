@@ -9,7 +9,7 @@
 
   // The 'service' property is the name of the service for the container that VS Code should
   // use. Update this value and .devcontainer/compose.yml to the real service name.
-  "service": "app",
+  "service": "app-workspace",
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
@@ -46,9 +46,14 @@
   "postCreateCommand": "npm install && npm run dev",
 
   // Configure tool-specific properties.
+  // Disabling auto forwarding of ports because the container is using the host network anyways.
+  // If this isn't working for you, enable the "Host network" setting in Docker Desktop.
   "customizations": {
     "vscode": {
-      "extensions": ["Orta.vscode-jest", "github.vscode-github-actions"]
+      "extensions": ["Orta.vscode-jest", "github.vscode-github-actions"],
+      "settings": {
+        "remote.autoForwardPorts": false
+      }
     }
   }
 
