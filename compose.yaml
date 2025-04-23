@@ -28,6 +28,7 @@ services:
       - "5050:80"
     volumes:
       - ./dev/pgadmin/servers.json:/pgadmin4/servers.json
+      - ./dev/pgadmin/pgpass:/config/pgpass
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@mycomp.com
       PGADMIN_DEFAULT_PASSWORD: secret
