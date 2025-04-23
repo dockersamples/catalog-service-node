@@ -1,13 +1,13 @@
 diff --git a/compose.yaml b/compose.yaml
-index 1f0e53e..6f1088b 100644
+index eaa1b8d..671ee5d 100644
 --- a/compose.yaml
 +++ b/compose.yaml
-@@ -77,13 +77,3 @@ services:
+@@ -78,13 +78,3 @@ services:
      post_start:
        - command: /opt/kafka/bin/kafka-topics.sh --create --if-not-exists --topic products --partitions 1 --replication-factor 1 --bootstrap-server kafka:9093
  
 -  kafka-ui:
--    image: kafbat/kafka-ui:01aa8ab36387c5f1d66d098e71488bfb0eb5f39c
+-    image: kafbat/kafka-ui:v1.2.0
 -    ports:
 -      - 8080:8080
 -    environment:
