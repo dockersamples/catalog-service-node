@@ -90,6 +90,19 @@ Once the development environment is up and running, the following URLs can be le
 - [http://localhost:5050](http://localhost:5050) - [pgAdmin](https://www.pgadmin.org/) to visualize the database. Login using the password `postgres` (configured in the Compose file)
 - [http://localhost:8080](http://localhost:8080) - [kafbat](https://github.com/kafbat/kafka-ui) to visualize the Kafka cluster
 
+### Postgres MCP
+
+You can use **Postgres MCP** with GitHub Copilot by running it with the [`mcp.json`](.vscode/mcp.json) file. [`Configuring MCP servers in Visual Studio Code`](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp#configuring-mcp-servers-in-visual-studio-code)
+
+#### How to use:
+
+1. Start the Compose
+2. Launch the application
+3. In the MCP config, click **Start** under the **Servers** section in [`mcp.json`](.vscode/mcp.json)
+4. In GitHub Copilot chat, select the **Agent** dropdown
+5. Ask a Postgres-related question, such as:
+   > List the data from the products table
+
 ### Helper scripts
 
 In the `dev/scripts` directory, there are a few scripts that can be used to interact with the REST API of the application.
