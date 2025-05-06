@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import { ProductRow } from "./ProductRow";
+import sampleProducts from "./sample-products.json";
 
 function App() {
   const [catalog, setCatalog] = useState(null);
@@ -21,10 +22,17 @@ function App() {
 
   const createProduct = useCallback(() => {
     const body = {
-      name: "New Product",
-      price: 100,
+      price: 100 + Math.floor(Math.random() * 100),
       upc: 100000000000 + catalog.length + 1,
     };
+
+    if (catalog.length < sampleProducts.length) {
+      body.name = sampleProducts[catalog.length].name;
+      body.description = sampleProducts[catalog.length].description;
+    } else {
+      body.name = `New Product #${catalog.length + 1}`;
+      body.description = "A fancy description for an awesome product";
+    }
 
     fetch("/api/products", {
       method: "POST",
@@ -57,6 +65,7 @@ function App() {
                 <tr>
                   <th>ID</th>
                   <th>Name</th>
+                  <th>Description</th>
                   <th>Price</th>
                   <th>UPC</th>
                   <th>Inventory</th>
