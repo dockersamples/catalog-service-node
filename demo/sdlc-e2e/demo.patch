@@ -1,17 +1,5 @@
-diff --git a/src/services/ProductService.js b/src/services/ProductService.js
-index 85b9ecb..629bea9 100644
---- a/src/services/ProductService.js
-+++ b/src/services/ProductService.js
-@@ -49,7 +49,6 @@ async function createProduct(product) {
-     action: "product_created",
-     id: newProductId,
-     name: product.name,
--    upc: product.upc,
-     price: product.price,
-   });
- 
 diff --git a/Dockerfile b/Dockerfile
-index 0577738..38d57d9 100644
+index 0577738..4932dda 100644
 --- a/Dockerfile
 +++ b/Dockerfile
 @@ -5,7 +5,7 @@
@@ -23,18 +11,15 @@ index 0577738..38d57d9 100644
  
  # Setup a non-root user to run the app
  WORKDIR /usr/local/app
-@@ -23,9 +23,9 @@ COPY --chown=appuser:appuser package.json package-lock.json ./
+@@ -23,7 +23,7 @@ COPY --chown=appuser:appuser package.json package-lock.json ./
  # and automatically restart the app.
  ###########################################################
  FROM base AS dev
 -ENV NODE_ENV=development
 +ENV NODE_ENV development
  RUN npm install
--CMD ["yarn", "dev-container"]
-+CMD ["npm", "run", "dev-container"]
+ CMD ["yarn", "dev-container"]
  
- 
- ###########################################################
 @@ -35,10 +35,10 @@ CMD ["yarn", "dev-container"]
  # installs only the production dependencies.
  ###########################################################
@@ -49,8 +34,9 @@ index 0577738..38d57d9 100644
 -CMD [ "node", "src/index.js" ]
 \ No newline at end of file
 +CMD node src/index.js
+\ No newline at end of file
 diff --git a/package-lock.json b/package-lock.json
-index d3706f8..0a0c834 100644
+index d3706f8..d0158a8 100644
 --- a/package-lock.json
 +++ b/package-lock.json
 @@ -10,7 +10,7 @@
@@ -58,7 +44,7 @@ index d3706f8..0a0c834 100644
          "@aws-sdk/client-s3": "^3.651.1",
          "dotenv": "^16.4.5",
 -        "express": "^4.21.1",
-+        "express": "4.17.1",
++        "express": "^4.17.1",
          "kafkajs": "^2.2.4",
          "multer": "^1.4.5-lts.1",
          "node-fetch": "v2",
@@ -850,7 +836,7 @@ index d3706f8..0a0c834 100644
        "engines": {
          "node": ">=0.6"
 diff --git a/package.json b/package.json
-index 8438638..14bdcf1 100644
+index 8438638..9fa06d2 100644
 --- a/package.json
 +++ b/package.json
 @@ -16,7 +16,7 @@
@@ -858,7 +844,19 @@ index 8438638..14bdcf1 100644
      "@aws-sdk/client-s3": "^3.651.1",
      "dotenv": "^16.4.5",
 -    "express": "^4.21.1",
-+    "express": "4.17.1",
++    "express": "^4.17.1",
      "kafkajs": "^2.2.4",
      "multer": "^1.4.5-lts.1",
      "node-fetch": "v2",
+diff --git a/src/services/ProductService.js b/src/services/ProductService.js
+index 31eaed7..a212fd8 100644
+--- a/src/services/ProductService.js
++++ b/src/services/ProductService.js
+@@ -49,7 +49,6 @@ async function createProduct(product) {
+     action: "product_created",
+     id: newProductId,
+     name: product.name,
+-    upc: product.upc,
+     price: product.price,
+     description: product.description,
+   });
