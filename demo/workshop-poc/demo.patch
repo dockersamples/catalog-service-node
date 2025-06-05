@@ -860,3 +860,28 @@ index 31eaed7..a212fd8 100644
      price: product.price,
      description: product.description,
    });
+
+diff --git a/.env b/.env
+index f6e5354..0c00e29 100644
+--- a/.env
++++ b/.env
+@@ -5,5 +5,5 @@ AWS_ENDPOINT_URL=http://localhost:4566
+ INVENTORY_SERVICE_BASE_URL=http://localhost:8090
+ PGUSER=postgres
+ PGPASSWORD=postgres
+-PGHOST=localhost
++PGHOST=host.docker.internal
+ PGDATABASE=catalog
+diff --git a/dev/webapp/vite.config.js b/dev/webapp/vite.config.js
+index d76bffb..d3fdd50 100644
+--- a/dev/webapp/vite.config.js
++++ b/dev/webapp/vite.config.js
+@@ -7,7 +7,7 @@ export default defineConfig({
+   server: {
+     proxy: {
+       "/api": {
+-        target: "http://host.docker.internal:3000",
++        target: "http://host.docker.internal:3000/",
+         changeOrigin: true,
+       },
+     },
