@@ -5,7 +5,7 @@
 # By using this stage, it provides a consistent base for both
 # the dev and prod versions of the image.
 ###########################################################
-FROM demonstrationorg/dhi-node:24-debian13-dev AS base
+FROM node:24-slim AS base
 
 # Setup a non-root user to run the app
 WORKDIR /usr/local/app
@@ -34,9 +34,9 @@ CMD ["yarn", "dev-container"]
 # This stage serves as the final image for production. It
 # installs only the production dependencies.
 ###########################################################
-FROM demonstrationorg/dhi-node:24-debian13 AS final
+FROM base AS final
 ENV NODE_ENV=production
-# RUN npm ci --production --ignore-scripts && npm cache clean --force
+RUN npm ci --production --ignore-scripts && npm cache clean --force
 COPY ./src ./src
 
 EXPOSE 3000
