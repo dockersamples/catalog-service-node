@@ -1,5 +1,5 @@
 diff --git a/Dockerfile b/Dockerfile
-index 0577738..4932dda 100644
+index 0577738..87af1b8 100644
 --- a/Dockerfile
 +++ b/Dockerfile
 @@ -5,7 +5,7 @@
@@ -20,7 +20,7 @@ index 0577738..4932dda 100644
  RUN npm install
  CMD ["yarn", "dev-container"]
  
-@@ -35,10 +35,10 @@ CMD ["yarn", "dev-container"]
+@@ -35,7 +35,7 @@ CMD ["yarn", "dev-container"]
  # installs only the production dependencies.
  ###########################################################
  FROM base AS final
@@ -29,14 +29,8 @@ index 0577738..4932dda 100644
  RUN npm ci --production --ignore-scripts && npm cache clean --force
  COPY ./src ./src
  
- EXPOSE 3000
- 
--CMD [ "node", "src/index.js" ]
-\ No newline at end of file
-+CMD node src/index.js
-\ No newline at end of file
 diff --git a/package-lock.json b/package-lock.json
-index d3706f8..d0158a8 100644
+index 87fa860..ef8a336 100644
 --- a/package-lock.json
 +++ b/package-lock.json
 @@ -10,7 +10,7 @@
@@ -46,9 +40,9 @@ index d3706f8..d0158a8 100644
 -        "express": "^4.21.1",
 +        "express": "^4.17.1",
          "kafkajs": "^2.2.4",
-         "multer": "^1.4.5-lts.1",
+         "multer": "^2.0.2",
          "node-fetch": "v2",
-@@ -3509,27 +3509,24 @@
+@@ -3627,27 +3627,24 @@
        }
      },
      "node_modules/body-parser": {
@@ -88,7 +82,7 @@ index d3706f8..d0158a8 100644
        }
      },
      "node_modules/bowser": {
-@@ -3678,43 +3675,14 @@
+@@ -3796,43 +3793,14 @@
        }
      },
      "node_modules/bytes": {
@@ -135,7 +129,7 @@ index d3706f8..d0158a8 100644
      "node_modules/callsites": {
        "version": "3.1.0",
        "resolved": "https://registry.npmjs.org/callsites/-/callsites-3.1.0.tgz",
-@@ -4058,17 +4026,23 @@
+@@ -4190,17 +4158,23 @@
        }
      },
      "node_modules/content-disposition": {
@@ -163,7 +157,7 @@ index d3706f8..d0158a8 100644
      "node_modules/content-type": {
        "version": "1.0.5",
        "resolved": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz",
-@@ -4086,9 +4060,9 @@
+@@ -4218,9 +4192,9 @@
        "license": "MIT"
      },
      "node_modules/cookie": {
@@ -176,7 +170,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT",
        "engines": {
          "node": ">= 0.6"
-@@ -4247,23 +4221,19 @@
+@@ -4380,23 +4354,19 @@
        }
      },
      "node_modules/depd": {
@@ -208,7 +202,7 @@ index d3706f8..d0158a8 100644
      },
      "node_modules/detect-newline": {
        "version": "3.1.0",
-@@ -4426,20 +4396,6 @@
+@@ -4577,20 +4547,6 @@
          "url": "https://dotenvx.com"
        }
      },
@@ -229,7 +223,7 @@ index d3706f8..d0158a8 100644
      "node_modules/eastasianwidth": {
        "version": "0.2.0",
        "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
-@@ -4481,9 +4437,9 @@
+@@ -4632,9 +4588,9 @@
        "license": "MIT"
      },
      "node_modules/encodeurl": {
@@ -242,7 +236,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT",
        "engines": {
          "node": ">= 0.8"
-@@ -4549,36 +4505,6 @@
+@@ -4700,36 +4656,6 @@
          "is-arrayish": "^0.2.1"
        }
      },
@@ -279,7 +273,7 @@ index d3706f8..d0158a8 100644
      "node_modules/escalade": {
        "version": "3.2.0",
        "resolved": "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz",
-@@ -4706,51 +4632,52 @@
+@@ -4857,51 +4783,52 @@
        }
      },
      "node_modules/express": {
@@ -357,7 +351,7 @@ index d3706f8..d0158a8 100644
      "node_modules/fast-fifo": {
        "version": "1.3.2",
        "resolved": "https://registry.npmjs.org/fast-fifo/-/fast-fifo-1.3.2.tgz",
-@@ -4811,17 +4738,17 @@
+@@ -4962,17 +4889,17 @@
        }
      },
      "node_modules/finalhandler": {
@@ -381,7 +375,7 @@ index d3706f8..d0158a8 100644
          "unpipe": "~1.0.0"
        },
        "engines": {
-@@ -4923,6 +4850,7 @@
+@@ -5074,6 +5001,7 @@
        "version": "1.1.2",
        "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
        "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
@@ -389,7 +383,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT",
        "funding": {
          "url": "https://github.com/sponsors/ljharb"
-@@ -4961,30 +4889,6 @@
+@@ -5112,30 +5040,6 @@
          "url": "https://github.com/sponsors/sindresorhus"
        }
      },
@@ -420,7 +414,7 @@ index d3706f8..d0158a8 100644
      "node_modules/get-package-type": {
        "version": "0.1.0",
        "resolved": "https://registry.npmjs.org/get-package-type/-/get-package-type-0.1.0.tgz",
-@@ -5008,19 +4912,6 @@
+@@ -5159,19 +5063,6 @@
          "url": "https://github.com/sponsors/sindresorhus"
        }
      },
@@ -440,7 +434,7 @@ index d3706f8..d0158a8 100644
      "node_modules/get-stream": {
        "version": "6.0.1",
        "resolved": "https://registry.npmjs.org/get-stream/-/get-stream-6.0.1.tgz",
-@@ -5079,18 +4970,6 @@
+@@ -5230,18 +5121,6 @@
          "node": ">=4"
        }
      },
@@ -459,7 +453,7 @@ index d3706f8..d0158a8 100644
      "node_modules/graceful-fs": {
        "version": "4.2.11",
        "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
-@@ -5108,22 +4987,11 @@
+@@ -5259,22 +5138,11 @@
          "node": ">=8"
        }
      },
@@ -483,7 +477,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT",
        "dependencies": {
          "function-bind": "^1.1.2"
-@@ -5140,21 +5008,27 @@
+@@ -5291,21 +5159,27 @@
        "license": "MIT"
      },
      "node_modules/http-errors": {
@@ -520,7 +514,7 @@ index d3706f8..d0158a8 100644
      "node_modules/human-signals": {
        "version": "2.1.0",
        "resolved": "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz",
-@@ -6641,15 +6515,6 @@
+@@ -6807,15 +6681,6 @@
          "tmpl": "1.0.5"
        }
      },
@@ -536,7 +530,7 @@ index d3706f8..d0158a8 100644
      "node_modules/media-typer": {
        "version": "0.3.0",
        "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz",
-@@ -6660,13 +6525,10 @@
+@@ -6826,13 +6691,10 @@
        }
      },
      "node_modules/merge-descriptors": {
@@ -554,7 +548,7 @@ index d3706f8..d0158a8 100644
      },
      "node_modules/merge-stream": {
        "version": "2.0.0",
-@@ -7015,22 +6877,10 @@
+@@ -7181,22 +7043,10 @@
          "node": ">=0.10.0"
        }
      },
@@ -580,7 +574,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT",
        "dependencies": {
          "ee-first": "1.1.1"
-@@ -7217,9 +7067,9 @@
+@@ -7383,9 +7233,9 @@
        "license": "ISC"
      },
      "node_modules/path-to-regexp": {
@@ -593,7 +587,7 @@ index d3706f8..d0158a8 100644
        "license": "MIT"
      },
      "node_modules/pg": {
-@@ -7571,18 +7421,12 @@
+@@ -7763,18 +7613,12 @@
        "license": "MIT"
      },
      "node_modules/qs": {
@@ -615,7 +609,7 @@ index d3706f8..d0158a8 100644
        }
      },
      "node_modules/queue-tick": {
-@@ -7602,13 +7446,13 @@
+@@ -7794,13 +7638,13 @@
        }
      },
      "node_modules/raw-body": {
@@ -634,7 +628,7 @@ index d3706f8..d0158a8 100644
          "iconv-lite": "0.4.24",
          "unpipe": "1.0.0"
        },
-@@ -7821,6 +7665,7 @@
+@@ -8015,6 +7859,7 @@
        "version": "5.2.1",
        "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
        "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
@@ -642,7 +636,7 @@ index d3706f8..d0158a8 100644
        "funding": [
          {
            "type": "github",
-@@ -7854,63 +7699,54 @@
+@@ -8048,63 +7893,54 @@
        }
      },
      "node_modules/send": {
@@ -726,7 +720,7 @@ index d3706f8..d0158a8 100644
        "license": "ISC"
      },
      "node_modules/shebang-command": {
-@@ -7936,78 +7772,6 @@
+@@ -8130,78 +7966,6 @@
          "node": ">=8"
        }
      },
@@ -805,7 +799,7 @@ index d3706f8..d0158a8 100644
      "node_modules/signal-exit": {
        "version": "3.0.7",
        "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz",
-@@ -8186,12 +7950,12 @@
+@@ -8380,12 +8144,12 @@
        }
      },
      "node_modules/statuses": {
@@ -822,7 +816,7 @@ index d3706f8..d0158a8 100644
        }
      },
      "node_modules/streamsearch": {
-@@ -8560,9 +8324,9 @@
+@@ -8754,9 +8518,9 @@
        }
      },
      "node_modules/toidentifier": {
@@ -836,7 +830,7 @@ index d3706f8..d0158a8 100644
        "engines": {
          "node": ">=0.6"
 diff --git a/package.json b/package.json
-index 8438638..9fa06d2 100644
+index 6da46f4..6df390c 100644
 --- a/package.json
 +++ b/package.json
 @@ -16,7 +16,7 @@
@@ -846,7 +840,7 @@ index 8438638..9fa06d2 100644
 -    "express": "^4.21.1",
 +    "express": "^4.17.1",
      "kafkajs": "^2.2.4",
-     "multer": "^1.4.5-lts.1",
+     "multer": "^2.0.2",
      "node-fetch": "v2",
 diff --git a/src/services/ProductService.js b/src/services/ProductService.js
 index 31eaed7..a212fd8 100644
