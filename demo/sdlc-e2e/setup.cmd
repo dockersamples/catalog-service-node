@@ -17,7 +17,7 @@ git pull
 git checkout -b %BRANCH_NAME%
 
 echo Applying patch and creating a commit
-powershell -NoProfile -Command "(Get-Content '.\demo\sdlc-e23\demo.patch' -Raw) -replace '`n', \"`r`n\" | Set-Content '%TEMP%\demo-windows.patch' -NoNewline"
+powershell -NoProfile -Command "(Get-Content '.\demo\sdlc-e2e\demo.patch' -Raw) -replace '`n', \"`r`n\" | Set-Content '%TEMP%\demo-windows.patch' -NoNewline"
 git apply --whitespace=fix "%TEMP%\demo-windows.patch"
 del "%TEMP%\demo-windows.patch" 2>nul
 git commit -am "Demo prep"
