@@ -1,0 +1,26 @@
+# Default: treat text as text, store LF in repo
+*                 text=auto eol=lf
+
+# Unix/mac scripts must be LF (shebang-friendly)
+*.sh              text eol=lf
+
+# Windows batch/PowerShell can use CRLF locally
+*.cmd             text eol=crlf
+*.bat             text eol=crlf
+*.ps1             text eol=crlf
+
+# Common text files — keep LF in repo
+*.md              text eol=lf
+*.yml             text eol=lf
+*.yaml            text eol=lf
+*.json            text eol=lf
+Dockerfile        text eol=lf
+*.env             text eol=lf
+
+# Binary
+*.png             -text
+*.jpg             -text
+*.jpeg            -text
+*.gif             -text
+*.pdf             -text
+*.zip             -text
