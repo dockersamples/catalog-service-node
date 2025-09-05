@@ -1,4 +1,4 @@
-1#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
