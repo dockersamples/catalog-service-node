@@ -88,7 +88,15 @@ async function getProductImage(id) {
 async function uploadProductImage(id, buffer) {
   const client = await getClient();
 
-  await uploadFile(id, buffer);
+  // Get product name for metadata
+  const productResult = await client.query(
+    "SELECT name FROM products WHERE id = $1",
+    [id],
+  );
+  const productName =
+    productResult.rows.length > 0 ? productResult.rows[0].name : "";
+
+  await uploadFile(id, buffer, productName);
   await client.query("UPDATE products SET has_image=TRUE WHERE id=$1", [id]);
 }
 

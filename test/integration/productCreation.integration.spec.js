@@ -9,7 +9,7 @@ const { KafkaConsumer } = require("./kafkaSupport");
 describe("Product creation", () => {
   let postgresContainer, kafkaContainer, localstackContainer;
   let kafkaConsumer;
-  let productService, publisherService;
+  let productService, publisherService, storageService;
 
   beforeAll(async () => {
     console.log("Starting containers");
@@ -30,6 +30,7 @@ describe("Product creation", () => {
   beforeAll(async () => {
     productService = require("../../src/services/ProductService");
     publisherService = require("../../src/services/PublisherService");
+    storageService = require("../../src/services/StorageService");
   });
 
   afterAll(async () => {
@@ -126,6 +127,16 @@ describe("Product creation", () => {
       }))();
 
     expect(retrievedImageBuffer).toEqual(imageBuffer);
+
+    // Validate metadata
+    const metadata = await storageService.getObjectMetadata(createdProduct.id);
+    expect(metadata.productname).toBe("Kafka publishing test");
+
+    // Validate tags
+    const tags = await storageService.getObjectTags(createdProduct.id);
+    expect(tags).toEqual([
+      { Key: "productId", Value: createdProduct.id.toString() },
+    ]);
   }, 15000);
 
   it("doesn't allow duplicate UPCs", async () => {
