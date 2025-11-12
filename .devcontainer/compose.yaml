@@ -1,6 +1,6 @@
 services:
   app-workspace:
-    image: mcr.microsoft.com/devcontainers/javascript-node:20
+    image: mcr.microsoft.com/devcontainers/javascript-node:22-bookworm
     network_mode: host
     volumes:
       - ./:/workspaces/catalog-service-node:cached
