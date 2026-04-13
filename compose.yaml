@@ -12,7 +12,7 @@ services:
 
   ############## DATABASE AND VISUALIZER ##############
   postgres:
-    image: postgres:17.4
+    image: postgres:17.9
     ports:
       - "5432:5432"
     volumes:
@@ -23,7 +23,7 @@ services:
       POSTGRES_DB: catalog
 
   pgadmin:
-    image: dpage/pgadmin4:9.2.0
+    image: dpage/pgadmin4:9.14.0
     ports:
       - "5050:80"
     configs:
@@ -45,7 +45,7 @@ services:
 
   ############## LOCAL AWS ##############
   aws:
-    image: localstack/localstack:4.3.0
+    image: localstack/localstack:4.14.0
     ports:
       - "4566:4566"
     post_start:
