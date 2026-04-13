@@ -4,7 +4,7 @@ const { LocalstackContainer } = require("@testcontainers/localstack");
 const path = require("path");
 
 async function createAndBootstrapPostgresContainer() {
-  const postgresContainer = await new PostgreSqlContainer("postgres:17.4")
+  const postgresContainer = await new PostgreSqlContainer("postgres:17.9")
     .withCopyFilesToContainer([
       {
         source: path.join(__dirname, "../../dev/db/1-create-schema.sql"),
@@ -41,7 +41,7 @@ async function createAndBootstrapKafkaContainer() {
 
 async function createAndBootstrapLocalstackContainer() {
   const localstackContainer = await new LocalstackContainer(
-    "localstack/localstack:4.3.0",
+    "localstack/localstack:4.14.0",
   ).start();
 
   process.env.AWS_ENDPOINT_URL = localstackContainer.getConnectionUri();
