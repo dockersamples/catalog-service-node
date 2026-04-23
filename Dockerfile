@@ -5,11 +5,11 @@
 # By using this stage, it provides a consistent base for both
 # the dev and prod versions of the image.
 ###########################################################
-FROM node:24-slim AS base
+FROM node:25-alpine AS base
 
 # Setup a non-root user to run the app
 WORKDIR /usr/local/app
-RUN useradd -m appuser && chown -R appuser /usr/local/app
+RUN adduser -D appuser && chown -R appuser /usr/local/app
 USER appuser
 COPY --chown=appuser:appuser package.json package-lock.json ./
 
@@ -36,7 +36,6 @@ CMD ["yarn", "dev-container"]
 ###########################################################
 FROM base AS final
 ENV NODE_ENV=production
-RUN npm ci --production --ignore-scripts && npm cache clean --force
 COPY ./src ./src
 
 EXPOSE 3000
