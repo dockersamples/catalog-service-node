@@ -7,11 +7,9 @@
 ###########################################################
 FROM node:25-alpine AS base
 
-# Setup a non-root user to run the app
+# Non-root user already configured in DHI image
 WORKDIR /usr/local/app
-RUN adduser -D appuser && chown -R appuser /usr/local/app
-USER appuser
-COPY --chown=appuser:appuser package.json package-lock.json ./
+COPY --chown=node:node package.json package-lock.json ./
 
 
 ###########################################################
@@ -34,10 +32,13 @@ CMD ["yarn", "dev-container"]
 # This stage serves as the final image for production. It
 # installs only the production dependencies.
 ###########################################################
-FROM base AS final
+FROM node:25-alpine AS final
 ENV NODE_ENV=production
-COPY ./src ./src
+WORKDIR /usr/local/app
+COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node ./src ./src
 
+USER node
 EXPOSE 3000
 
 CMD [ "node", "src/index.js" ]
